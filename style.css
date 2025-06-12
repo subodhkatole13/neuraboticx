@@ -364,8 +364,7 @@ h2{font-size:clamp(1.7rem, 4vw, 2.2rem);}
 .footer-social{margin-top:20px;}
 .pricing-plans-grid{grid-template-columns:1fr;}
 .plan-card.popular{transform:scale(1);}
-.floating-buttons-container{right:auto;left:15px;bottom:15px;gap:10px;}
-.floating-btn{padding:10px 15px;font-size:0.8rem;}
+.floating-buttons-container{display:none;}
 .hero-title{font-size:clamp(2rem, 8vw, 3rem);}
 .hero-subtitle{font-size:clamp(1rem, 3vw, 1.3rem);}
 .hero-cta-group .cta-button{padding:12px 28px;font-size:0.9rem;}
