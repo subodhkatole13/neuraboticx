@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuraboticx - Pioneering Superconscious AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{margin:0;padding:0;color:white;}
+        #blob{background:linear-gradient(to right,#00c6ff,#9a00ff);height:34vmax;width:34vmax;position:fixed;left:50%;top:50%;transform:translate(-50%, -50%);border-radius:50%;animation:rotate 20s infinite;filter:blur(2vmax);z-index:-2;}
+        #blur{position:fixed;top:0;left:0;width:100%;height:100vh;z-index:-1;backdrop-filter:blur(10vmax);}
+        @keyframes rotate{from{transform:translate(-50%, -50%) rotate(0deg);}to{transform:translate(-50%, -50%) rotate(360deg);}}
+        #hero.hero-reimagined.hero-merged-layout{display:flex;min-height:100vh;padding-top:var(--header-height);padding-bottom:0;position:relative;background:none;}
+        .hero-content-wrapper-merged{display:flex;flex-direction:row;width:100%;flex-grow:1;align-items:stretch;position:relative;z-index:1;}
+        .hero-animation-column{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .hero-left-animation{flex:0 0 30%;}
+        #hero-3d-liquid-container{width:100%;height:100%;min-height:300px;}
+        #hero-3d-liquid-container canvas{display:block;width:100% !important;height:100% !important;}
+        .hero-center-content-column{flex:1;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2;}
+        #hero .hero-main-content{margin-bottom:1.5rem;}
+        #hero .hero-title{font-size:clamp(2.0rem, 4.5vw, 3.2rem);color:white;}
+        #hero .hero-title span.highlight{color:var(--primary-color);text-shadow:0 0 10px var(--primary-color);}
+        #hero .hero-subtitle{font-size:clamp(0.85rem, 1.8vw, 1.1rem);max-width:500px;color:var(--text-muted-color);}
+        #hero .hero-crystal-container{width:clamp(100px, 12vw, 160px);margin-bottom:1rem;}
+        #hero .hero-pill-nav{margin-top:1.5rem;background-color:rgba(30, 41, 59, 0.65);}
+        .hero-right-animation{flex:0 0 30%;}
+        .cubes-container{position:relative;width:100%;height:100%;min-height:300px;perspective:800px;pointer-events:auto;display:flex;align-items:center;justify-content:center;}
+        .cube{position:absolute;width:80px;height:80px;transform-style:preserve-3d;animation:float 8s ease-in-out infinite;}
+        .cube-face{position:absolute;width:100%;height:100%;border:1px solid rgba(255, 255, 255, 0.1);backdrop-filter:blur(8px);}
+        .cube-face.front{transform:translateZ(40px);background:linear-gradient(135deg, rgba(236, 72, 153, 0.4), rgba(147, 51, 234, 0.4));}
+        .cube-face.back{transform:translateZ(-40px) rotateY(180deg);background:linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(37, 99, 235, 0.4));}
+        .cube-face.right{transform:rotateY(90deg) translateZ(40px);background:linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(5, 150, 105, 0.4));}
+        .cube-face.left{transform:rotateY(-90deg) translateZ(40px);background:linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(217, 119, 6, 0.4));}
+        .cube-face.top{transform:rotateX(90deg) translateZ(40px);background:linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(126, 34, 206, 0.4));}
+        .cube-face.bottom{transform:rotateX(-90deg) translateZ(40px);background:linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(79, 70, 229, 0.4));}
+        .cubes-container .cube:nth-child(1){top:15%;left:20%;animation-delay:0s;animation-duration:8s;}
+        .cubes-container .cube:nth-child(2){top:30%;left:60%;animation-delay:-2s;animation-duration:10s;}
+        .cubes-container .cube:nth-child(3){bottom:35%;left:10%;animation-delay:-4s;animation-duration:7s;}
+        .cubes-container .cube:nth-child(4){bottom:20%;left:55%;animation-delay:-1s;animation-duration:9s;}
+        .cubes-container .cube:nth-child(5){top:50%;left:40%;animation-delay:-3s;animation-duration:6s;transform:scale(0.8);}
+        @keyframes float{0%,100%{transform:translateY(0px) rotateX(0deg) rotateY(0deg);}25%{transform:translateY(-15px) rotateX(15deg) rotateY(90deg);}50%{transform:translateY(-8px) rotateX(30deg) rotateY(180deg);}75%{transform:translateY(-20px) rotateX(45deg) rotateY(270deg);}}
+        .glow-effect{position:absolute;top:50%;left:50%;width:200px;height:200px;background:radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);border-radius:50%;filter:blur(30px);transform:translate(-50%, -50%);pointer-events:none;animation:pulse 4s ease-in-out infinite;}
+        @keyframes pulse{0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.7;transform:translate(-50%,-50%) scale(1.1);}}
+        @media (max-width:1024px){.hero-content-wrapper-merged{flex-direction:column;}.hero-left-animation,.hero-right-animation{flex:1 1 auto;width:100%;height:35vh;min-height:250px;}.hero-left-animation{order:1;}.hero-center-content-column{order:2;padding:30px 15px;}.hero-right-animation{order:3;}.cube{width:60px;height:60px;}.cube-face.front{transform:translateZ(30px);}.cube-face.back{transform:translateZ(-30px) rotateY(180deg);}.cube-face.right{transform:rotateY(90deg) translateZ(30px);}.cube-face.left{transform:rotateY(-90deg) translateZ(30px);}.cube-face.top{transform:rotateX(90deg) translateZ(30px);}.cube-face.bottom{transform:rotateX(-90deg) translateZ(30px);}}
+        @media (max-width:768px){.hero-left-animation,.hero-right-animation{height:30vh;min-height:220px;}#hero .hero-title{font-size:clamp(1.8rem, 5.5vw, 2.6rem);}#hero .hero-subtitle{font-size:clamp(0.8rem, 2.2vw, 1.0rem);}#hero .hero-crystal-container{width:clamp(90px, 18vw, 140px);}.cubes-container .cube:nth-child(1){top:10%;left:15%;}.cubes-container .cube:nth-child(2){top:25%;left:70%;}.cubes-container .cube:nth-child(3){bottom:30%;left:5%;}.cubes-container .cube:nth-child(4){bottom:15%;left:60%;}.cubes-container .cube:nth-child(5){top:50%;left:35%;}}
+        .video-embed-container{transition:box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out;}
+        .video-embed-container:hover{box-shadow:0 0 25px var(--primary-color), 0 0 10px rgba(0, 169, 255, 0.4), var(--box-shadow-soft);border-color:var(--primary-color);transform:scale(1.02);}
+        #navbar .nav-link{transition:color var(--transition-speed) ease,text-shadow var(--transition-speed) ease,background-color 0.2s ease-out,transform 0.2s ease-out;}
+        #navbar .nav-link:hover,#navbar .nav-link.active{background-color:rgba(0, 169, 255, 0.08);transform:translateY(-1px) scale(1.02);}
+        #navbar .nav-link::after{}
+    </style>
+</head>
+<body>
+    <div id="blob"></div>
+    <div id="blur"></div>
+    <div id="loading-overlay">
+        <div class="loader-text">INITIALIZING NEURABOTICX CORE...</div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+        <div class="loader-subtext">Booting Advanced AI Systems... Stand By.</div>
+    </div>
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <div class="logo-container-header">
+                    <div class="neural-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="30" r="6" fill="url(#nodeGradient)"/>
+                            <circle cx="20" cy="70" r="6" fill="url(#nodeGradient)"/>
+                            <circle cx="50" cy="20" r="6" fill="url(#nodeGradient)"/>
+                            <circle cx="50" cy="50" r="8" fill="url(#centerGradient)"/>
+                            <circle cx="50" cy="80" r="6" fill="url(#nodeGradient)"/>
+                            <circle cx="80" cy="35" r="6" fill="url(#nodeGradient)"/>
+                            <circle cx="80" cy="65" r="6" fill="url(#nodeGradient)"/>
+                            <line x1="26" y1="30" x2="44" y2="20" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="26" y1="30" x2="42" y2="50" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="26" y1="70" x2="42" y2="50" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="26" y1="70" x2="44" y2="80" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="56" y1="20" x2="74" y2="35" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="58" y1="50" x2="74" y2="35" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="58" y1="50" x2="74" y2="65" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <line x1="56" y1="80" x2="74" y2="65" stroke="url(#connectionGradient)" stroke-width="2" opacity="0.8"/>
+                            <defs>
+                                <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#40e0d0;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00bcd4;stop-opacity:1" />
+                                </linearGradient>
+                                <radialGradient id="centerGradient" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#40e0d0;stop-opacity:1" />
+                                </radialGradient>
+                                <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#40e0d0;stop-opacity:0.6" />
+                                    <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.8" />
+                                    <stop offset="100%" style="stop-color:#00bcd4;stop-opacity:0.6" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="company-name">NEURΔ<span class=""></span>BOTICX™</div>
+                </div>
+            </a>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="#hero" class="nav-link active">Genesis</a></li>
+                    <li><a href="#robot-showcase" class="nav-link">Robotics_AI</a></li>
+                    <li><a href="#vision" class="nav-link">Vision</a></li>
+                    <li><a href="#services-overview" class="nav-link">Solutions</a></li>
+                    <li><a href="#stats-dashboard" class="nav-link">Impact</a></li>
+                    <li><a href="#tech-grid" class="nav-link">Tech</a></li>
+                    <li><a href="#cv-demo-panel" class="nav-link">CV_Demo</a></li>
+                    <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+                    <li><a href="#contact" class="nav-link">Connect</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-button header-cta"><span>⫸</span><i class="fas fa-angle-right"></i></a>
+            <button id="menu-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </header>
+    <main>
+        <section id="hero" class="hero-reimagined hero-merged-layout">
+            <div class="hero-content-wrapper-merged">
+                <div class="hero-animation-column hero-left-animation">
+                    <div id="hero-3d-liquid-container"></div>
+                </div>
+                <div class="hero-center-content-column">
+                    <div class="hero-main-content">
+                        <h1 class="hero-title animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+                            Pioneering <span class="highlight">Superconscious</span> AI
+                        </h1>
+                        <p class="hero-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="450">
+                            Unveiling the Next Paradigm of Intelligence & Automation.
+                        </p>
+                        <div class="hero-cta-group animate-on-scroll" data-animation="fadeInUp" data-delay="600">
+                            <a href="#services-overview" class="cta-button primary-cta"><span>Explore Solutions</span> <i class="fas fa-cogs"></i></a>
+                            <a href="#contact" class="cta-button secondary-cta"><span>Request Demo</span> <i class="fas fa-play-circle"></i></a>
+                        </div>
+                    </div>
+                    <nav class="hero-pill-nav animate-on-scroll" data-animation="fadeInDown" data-delay="100">
+                        <div class="pill-nav-logo">
+                             <i class="fas fa-atom"></i>
+                        </div>
+                        <ul>
+                            <li><a href="#vision">About</a></li>
+                            <li><a href="#process-steps">How it Works</a></li>
+                            <li><a href="#services-overview">For Whom</a></li>
+                            <li><a href="#contact">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="hero-animation-column hero-right-animation">
+                    <div class="cubes-container">
+                        <div class="glow-effect"></div>
+                        <div class="cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
+                        <div class="cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
+                        <div class="cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
+                        <div class="cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
+                        <div class="cube"><div class="cube-face front"></div><div class="cube-face back"></div><div class="cube-face right"></div><div class="cube-face left"></div><div class="cube-face top"></div><div class="cube-face bottom"></div></div>
+                    </div>
+                </div>
+            </div>
+            <a href="#robot-showcase" class="scroll-down-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </section>
+        <section id="robot-showcase" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Meet <span>AURA</span>: Our Flagship AI Unit</h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    Experience the future of robotics. Interact with a cutting-edge 3D model of our AI-powered autonomous unit.
+                </p>
+                <div id="robot-3d-container" class="animate-on-scroll" data-animation="zoomIn" data-delay="200">
+                    <div class="robot-placeholder">
+                        <i class="fas fa-robot"></i>
+                        <p>Interactive 3D Robot Model</p>
+                        <p><small>(WebGL/Spline Content Area)</small></p>
+                    </div>
+                    <div id="robot-tooltip" class="robot-tooltip">Tooltip Content</div>
+                </div>
+                <p class="animate-on-scroll" data-animation="fadeInUp" data-delay="300" style="margin-top: 30px;">
+                    Powered by <span class="tech-highlight">Advanced Simulation</span> & <span class="tech-highlight">Real-time Physics</span>.
+                </p>
+            </div>
+        </section>
+        <section id="vision" class="content-section alt-bg">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Our <span>Digital</span> Prophecy</h2>
+                <div class="vision-grid">
+                    <div class="vision-card animate-on-scroll" data-animation="fadeInLeft" data-delay="100">
+                        <i class="fas fa-brain"></i>
+                        <h3>Cognitive Evolution</h3>
+                        <p>Architecting self-aware AI systems that learn, adapt, and co-create, pushing intelligence boundaries.</p>
+                        <div id="ai-brain-animation" class="animate-on-scroll" data-animation="fadeInUp" data-delay="150">
+                            <div class="neural-network-placeholder">
+                                <div class="node-core"></div>
+                                <div class="node-path n1"></div> <div class="node-path n2"></div>
+                                <div class="node-path n3"></div> <div class="node-path n4"></div>
+                                <p class="lottie-note"><small>_</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vision-card animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                        <i class="fas fa-robot"></i>
+                        <h3>Robotic Renaissance</h3>
+                        <p>Designing autonomous robotic entities for complex tasks and seamless human interaction.</p>
+                    </div>
+                    <div class="vision-card animate-on-scroll" data-animation="fadeInRight" data-delay="300">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Intelligent Automation</h3>
+                        <p>Streamlining businesses with AI-driven tools for peak efficiency and accelerated growth.</p>
+                    </div>
+                </div>
+                <div class="vision-image-container animate-on-scroll" data-animation="zoomIn" data-delay="400">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWklMjByb2JvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="AI and Robotics Synergy" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section id="stats-dashboard" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Quantifiable <span>Impact</span></h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    Tracking our progress in revolutionizing industries with AI and Robotics.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-item animate-on-scroll" data-animation="bounceIn" data-delay="200">
+                        <i class="fas fa-robot"></i>
+                        <div class="stat-value" data-target="1500">0</div>
+                        <div class="stat-label">Robots Deployed</div>
+                        <div class="stat-graph radial-graph" style="--value: 75; --graph-color: var(--accent-glow-1);"><span>75%</span></div>
+                    </div>
+                    <div class="stat-item animate-on-scroll" data-animation="bounceIn" data-delay="300">
+                        <i class="fas fa-brain"></i>
+                        <div class="stat-value" data-target="300">0</div>
+                        <div class="stat-label">AI Models Trained</div>
+                        <div class="stat-graph bar-graph" style="--graph-color: var(--accent-glow-2);"><div style="width: 90%;"><span>90%</span></div></div>
+                    </div>
+                    <div class="stat-item animate-on-scroll" data-animation="bounceIn" data-delay="400">
+                        <i class="fas fa-eye"></i>
+                        <div class="stat-value" data-target="75">0</div>
+                        <div class="stat-label">CV Modules Built</div>
+                        <div class="stat-graph radial-graph" style="--value: 60; --graph-color: var(--accent-glow-3);"><span>60%</span></div>
+                    </div>
+                     <div class="stat-item animate-on-scroll" data-animation="bounceIn" data-delay="500">
+                        <i class="fas fa-code-branch"></i>
+                        <div class="stat-value" data-target="12000">0</div>
+                        <div class="stat-label">Lines of Code Written</div>
+                        <div class="stat-graph bar-graph" style="--graph-color: var(--primary-color);"><div style="width: 80%;"><span>80%</span></div></div>
+                    </div>
+                </div>
+                 <p class="animate-on-scroll" data-animation="fadeInUp" data-delay="300" style="margin-top: 30px;">
+                    Visualizing progress with <span class="tech-highlight">Dynamic Data Interfaces</span>.
+                </p>
+            </div>
+        </section>
+        <section id="trusted-by" class="content-section alt-bg">
+            <div class="container text-center">
+                <h3 class="section-subtitle animate-on-scroll" data-animation="fadeInUp" style="font-size: 1.5rem; color: var(--text-color);">Trusted by Innovators & Global Enterprises</h3>
+                <div class="logos-grid animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                    <span><i class="fab fa-react"></i> QuantumLeap</span>
+                    <span><i class="fab fa-node-js"></i> Nova Dynamics</span>
+                    <span><i class="fas fa-infinity"></i> Apex Solutions</span>
+                    <span><i class="fas fa-atom"></i> Stellar Corp</span>
+                </div>
+            </div>
+        </section>
+        <section id="services-overview" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">AI Solutions to <span>Elevate</span> Your Enterprise</h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">We design, develop, and implement automation tools that help you work smarter, not harder, unlocking new levels of productivity and insight.</p>
+            </div>
+        </section>
+        <section id="workflow-automation" class="service-feature-section content-section alt-bg">
+            <div class="container service-layout">
+                <div class="service-mockup mockup-workflow animate-on-scroll" data-animation="fadeInLeft" data-delay="200">
+                    <h4>Intelligent Task Orchestrator</h4>
+                    <div class="task-item"><p><i class="fas fa-rocket"></i> Project Phoenix <span class="status-active">Active Deployment</span></p><i class="fas fa-check-circle status-icon-active"></i></div>
+                    <div class="task-item"><p><i class="fas fa-shield-alt"></i> Security Audit <span class="status-pending">Awaiting Review</span></p><i class="fas fa-hourglass-half status-icon-pending "></i></div>
+                    <div class="task-item"><p><i class="fas fa-chart-line"></i> Market Analysis <span class="status-complete">Report Generated</span></p><i class="fas fa-clipboard-check status-icon-complete"></i></div>
+                    <div class="task-item"><p><i class="fas fa-users-cog"></i> Resource Scaling <span class="status-warning">Threshold Alert</span></p><i class="fas fa-exclamation-triangle status-icon-warning"></i></div>
+                </div>
+                <div class="service-content animate-on-scroll" data-animation="fadeInRight">
+                    <span class="service-tag">Workflow Augmentation</span>
+                    <h3>Automate Repetitive Operations</h3>
+                    <p>Streamline internal processes by automating manual workflows like data entry, complex reporting, and multi-stage approval chains, saving critical time and minimizing operational errors.</p>
+                    <div class="service-tags-list">
+                        <span>Intelligent Task Bots</span>
+                        <span>100+ Automation Modules</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="ai-assistant" class="service-feature-section content-section">
+            <div class="container service-layout-reverse">
+                <div class="service-mockup mockup-ai-assistant animate-on-scroll" data-animation="fadeInRight" data-delay="200">
+                    <h4>Cognitive Interface <span class="connection-status">Online</span></h4>
+                    <div class="chat-log">
+                        <p class="ai-response"><span>AURA:</span> How can I assist you today, Commander?</p>
+                        <p class="user-query typing"><span>USER:</span> Analyze Q4 performance data and generate predictive forecast for Q1...</p>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" placeholder="Transmit your command...">
+                        <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                     <div class="chat-actions">
+                        <span><i class="fas fa-chart-pie"></i> Analyze Datasets</span>
+                        <span><i class="fas fa-magic"></i> Generate Insights</span>
+                        <span><i class="fas fa-search-plus"></i> Deep Research</span>
+                    </div>
+                </div>
+                <div class="service-content animate-on-scroll" data-animation="fadeInLeft">
+                    <span class="service-tag">AI Executive Assistant</span>
+                    <h3>Delegate Complex Daily Tasks</h3>
+                    <p>From managing dynamic schedules and drafting nuanced communications to summarizing strategic meetings, our AI assistants operate 24/7 to keep your business agile and ahead of the curve.</p>
+                    <div class="service-tags-list">
+                        <span>Intelligent Summaries</span>
+                        <span>Proactive Scheduling</span>
+                        <span>Contextual Awareness</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="tech-grid" class="content-section alt-bg">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Core <span>Technology</span> Matrix</h2>
+                <div class="tech-grid-container">
+                    <div class="tech-item animate-on-scroll" data-animation="bounceIn" data-delay="100" style="--tech-glow: var(--accent-glow-magenta);"><i class="fas fa-microchip"></i><h4>Quantum AI Processing</h4><p>Unparalleled computational speed in AI models.</p></div>
+                    <div class="tech-item animate-on-scroll" data-animation="bounceIn" data-delay="200" style="--tech-glow: var(--accent-glow-cyan);"><i class="fas fa-brain"></i><h4>Neural Lace Interfaces</h4><p>Intuitive robotic control and data exchange.</p></div>
+                    <div class="tech-item animate-on-scroll" data-animation="bounceIn" data-delay="300" style="--tech-glow: var(--accent-glow-green);"><i class="fas fa-atom"></i><h4>Bio-Synthetic Actuators</h4><p>Organic-inspired robotics for lifelike movement.</p></div>
+                </div>
+                <h3 class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="400" style="margin-top: 60px; font-size:1.8rem;">Our Arsenal: Key Technologies</h3>
+                <div id="tech-stack-cube-container" class="animate-on-scroll" data-animation="zoomIn" data-delay="500">
+                    <div class="tech-cube-scene">
+                        <div class="tech-cube">
+                            <div class="tech-cube-face front"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+                            <div class="tech-cube-face back"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"><span>TensorFlow</span></div>
+                            <div class="tech-cube-face right"><img src="https://www.vectorlogo.zone/logos/ros/ros-icon.svg" alt="ROS"><span>ROS</span></div>
+                            <div class="tech-cube-face left"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV"><span>OpenCV</span></div>
+                            <div class="tech-cube-face top"><span>YOLOv8</span></div>
+                            <div class="tech-cube-face bottom"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></div>
+                        </div>
+                    </div>
+                    <p class="tech-cube-instruction"></p>
+                </div>
+            </div>
+        </section>
+        <section id="process-steps" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Our <span>Integration</span> Protocol</h2>
+                <div class="process-grid-container">
+                    <div class="process-step-card animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+                        <span class="process-tag">Phase 1</span>
+                        <h4>Deep Analysis & Strategy</h4>
+                        <p>We assess your needs and identify AI solutions to streamline workflows and improve efficiency.</p>
+                        <div class="process-mockup mockup-analyzing">
+                           <div class="data-viz-icon"><i class="fas fa-chart-pie"></i></div>
+                           <ul><li><i class="fas fa-check-double"></i> System Audit</li><li><i class="fas fa-check-double"></i> Workflow Mapping</li><li><i class="fas fa-check-double"></i> Bottleneck ID</li></ul>
+                        </div>
+                    </div>
+                    <div class="process-step-card animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                        <span class="process-tag">Phase 2</span>
+                        <h4>AI System Development</h4>
+                        <p>Our team builds intelligent automation systems tailored to your business processes.</p>
+                        <div class="process-mockup mockup-development">
+                            <i class="fas fa-code code-icon"></i>
+                            <pre><code>// AI Core Logic
+if (event.type == 'PRIORITY_TARGET') {
+  this.engage(event.payload);
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="process-step-card animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                        <span class="process-tag">Phase 3</span>
+                        <h4>Seamless Integration</h4>
+                        <p>We smoothly integrate AI solutions into your existing infrastructure with minimal disruption.</p>
+                        <div class="process-mockup mockup-integration">
+                            <div class="integration-item"><div class="solution-icon"><i class="fas fa-atom"></i></div><p>Neuraboticx AI</p></div>
+                            <i class="fas fa-link link-icon"></i>
+                            <div class="integration-item"><div class="stack-icon"><i class="fas fa-layer-group"></i></div><p>Your Stack</p></div>
+                        </div>
+                    </div>
+                    <div class="process-step-card animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+                        <span class="process-tag">Phase 4</span>
+                        <h4>Continuous Optimization</h4>
+                        <p>We refine performance, analyze insights, and enhance automation for long-term growth.</p>
+                        <div class="process-mockup mockup-optimization">
+                            <div class="optimization-item"><p><i class="fas fa-brain"></i> Learning Module <span class="status-update">Efficiency +20%</span></p><i class="fas fa-sync-alt fa-spin status-icon-active"></i></div>
+                            <div class="optimization-item"><p><i class="fas fa-sitemap"></i> Workflow Engine <span class="status-update">Update Deployed</span></p><i class="fas fa-arrow-alt-circle-up status-icon-complete"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="cv-demo-panel" class="content-section alt-bg">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Real-Time <span>Vision AI</span></h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    Witness our Computer Vision capabilities live. Allow camera access to activate the demo.
+                </p>
+                <div class="cv-demo-controls animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                    <button id="start-camera-btn" class="cta-button"><i class="fas fa-video"></i> Activate Feed</button>
+                    <button id="stop-camera-btn" class="cta-button secondary" disabled><i class="fas fa-video-slash"></i> Deactivate</button>
+                </div>
+                <div id="cv-video-container" class="animate-on-scroll" data-animation="zoomIn" data-delay="300">
+                    <video id="cv-video-feed" autoplay playsinline muted></video>
+                    <canvas id="cv-overlay-canvas"></canvas>
+                    <div id="cv-placeholder-text"><i class="fas fa-camera"></i> Camera Feed Offline</div>
+                </div>
+                <div class="cv-toggle-buttons animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+                    <button class="cv-toggle active" data-mode="object-detection"><i class="fas fa-cubes"></i> Object Detection</button>
+                    <button class="cv-toggle" data-mode="lane-detection"><i class="fas fa-road"></i> Lane Detection</button>
+                    <button class="cv-toggle" data-mode="face-recognition"><i class="fas fa-smile"></i> Face Recognition</button>
+                </div>
+                <p class="animate-on-scroll" data-animation="fadeInUp" data-delay="500" style="margin-top: 20px;">
+                    <span class="tech-highlight">WebRTC</span> for stream. Detection models (<span class="tech-highlight">TensorFlow.js</span>) run client-side.
+                </p>
+            </div>
+        </section>
+        <section id="pricing-plans" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Access the <span>Matrix</span>: Our Plans</h2>
+                <div class="toggle-switch-container animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    <span>Monthly Cycle</span>
+                    <label class="pricing-toggle-switch">
+                        <input type="checkbox" id="pricingToggleSwitch">
+                        <span class="pricing-slider round"></span>
+                    </label>
+                    <span>Annual Cycle (Save 20%)</span>
+                </div>
+                <div class="pricing-plans-grid">
+                    <div class="plan-card animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                        <i class="fas fa-rocket plan-icon"></i>
+                        <h3>Ignition</h3>
+                        <p class="plan-price">$<span class="price-value">49</span>/month</p>
+                        <p class="plan-description">Perfect for startups & small businesses initiating AI automation.</p>
+                        <a href="#contact" class="cta-button plan-cta">Select Ignition</a>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Basic Workflow Automation</li>
+                            <li><i class="fas fa-check"></i> AI Personal Assistant Core</li>
+                            <li><i class="fas fa-check"></i> Standard Analytics Suite</li>
+                            <li><i class="fas fa-check"></i> Email & Comms Support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card popular animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+                        <span class="popular-tag-badge">Most Popular</span>
+                        <i class="fas fa-bolt plan-icon"></i>
+                        <h3>Velocity</h3>
+                        <p class="plan-price">$<span class="price-value">99</span>/month</p>
+                        <p class="plan-description">For growing businesses scaling with advanced AI capabilities.</p>
+                        <a href="#contact" class="cta-button plan-cta primary">Select Velocity</a>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Advanced Workflow Automation</li>
+                            <li><i class="fas fa-check"></i> AI Sales & Marketing Toolkit</li>
+                            <li><i class="fas fa-check"></i> Enhanced Data Analytics</li>
+                            <li><i class="fas fa-check"></i> Priority Comms Support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-card animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+                        <i class="fas fa-gem plan-icon"></i>
+                        <h3>Singularity</h3>
+                        <p class="price-custom-text">Custom Protocol</p>
+                        <p class="plan-description">Tailored AI solutions for large enterprises with unique requirements.</p>
+                        <a href="#contact" class="cta-button plan-cta">Engage for Singularity</a>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Fully Bespoke AI Systems</li>
+                            <li><i class="fas fa-check"></i> Dedicated AI Strategist</li>
+                            <li><i class="fas fa-check"></i> Enterprise Compliance</li>
+                            <li><i class="fas fa-check"></i> 24/7 VIP Quantum Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="roadmap" class="content-section alt-bg">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Chronos <span>Protocol</span>: Our Trajectory</h2>
+                <div class="roadmap-timeline">
+                    <div class="timeline-item left animate-on-scroll" data-animation="fadeInLeft"><div class="timeline-content"><div class="timeline-date">Q1 2025 - Genesis Core</div><h3>Foundation & Alpha Systems</h3><p>Establishment of Neuraboticx.ai. Initial AI model development and robotic prototype assembly. Secure seed funding.</p></div></div>
+                    <div class="timeline-item right animate-on-scroll" data-animation="fadeInRight"><div class="timeline-content"><div class="timeline-date">Q3 2025 - Sentience Emergence</div><h3>Beta AI Deployment</h3><p>Closed beta testing of core AI functionalities. Advanced robotic sensory integration. Strategic partnerships initiated.</p></div></div>
+                    <div class="timeline-item left animate-on-scroll" data-animation="fadeInLeft"><div class="timeline-content"><div class="timeline-date">Q2 2026 - Symbiotic Interface</div><h3>Public Interface Rollout</h3><p>Launch of initial human-AI-robot interaction platforms. Open-source contributions to ethical AI frameworks.</p></div></div>
+                    <div class="timeline-item right animate-on-scroll" data-animation="fadeInRight"><div class="timeline-content"><div class="timeline-date">Q4 2026 - Global Nexus</div><h3>Decentralized Expansion</h3><p>Global scaling of Neuraboticx network. Autonomous AI-driven research initiatives commence. First societal impact projects.</p></div></div>
+                    <div class="timeline-item left animate-on-scroll" data-animation="fadeInLeft"><div class="timeline-content"><div class="timeline-date">2027+ - The Singularity Horizon</div><h3>Transcendent Evolution</h3><p>Exploring post-human paradigms and the future of consciousness. Continuing the ethical advancement of superintelligence.</p></div></div>
+                </div>
+            </div>
+        </section>
+        <section id="interactive-lab" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Explore Our <span>Digital Twin</span> Lab</h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    Click on different modules in our virtual robotics lab to see them in action and learn more about their functions.
+                </p>
+                <div id="lab-diagram-container" class="animate-on-scroll" data-animation="zoomIn" data-delay="200">
+                    <div class="lab-placeholder">
+                        <i class="fas fa-industry"></i>
+                        <p>Interactive Virtual Lab Environment</p>
+                        <p><small>(Clickable modules reveal info cards)</small></p>
+                    </div>
+                    <div id="lab-info-card" class="lab-info-card">
+                        <h4 id="lab-info-title">Module Information</h4>
+                        <p id="lab-info-description">Details about the selected module.</p>
+                        <button id="close-lab-info"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="cyber-terminal" class="content-section alt-bg">
+            <div class="container">
+                 <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">System <span>Diagnostics</span> & Control</h2>
+                <div class="terminal-window animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                    <div class="terminal-header">
+                        <span>bash -- Neuraboticx_Core_v3.2</span>
+                        <div class="terminal-buttons">
+                            <span class="term-btn min"></span>
+                            <span class="term-btn max"></span>
+                            <span class="term-btn close"></span>
+                        </div>
+                    </div>
+                    <div id="terminal-output" class="terminal-output">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="synergy-box-video" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">The <span>Synergy Box</span> Initiative</h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    Discover our revolutionary Synergy Box: a compact, powerful AI and robotics deployment unit. Watch the design and capabilities video.
+                </p>
+                <div class="video-embed-container animate-on-scroll" data-animation="zoomIn" data-delay="200">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/RDGboM2SQLY" title="Placeholder Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        <section id="final-cta" class="content-section alt-bg final-cta-banner">
+            <div class="container text-center">
+                <h2 class="animate-on-scroll" data-animation="fadeInUp">Let AI Amplify Your Potential. Scale <span>Smarter.</span></h2>
+                <p class="animate-on-scroll" data-animation="fadeInUp" data-delay="100">Book a Strategic Call Today and Initiate Your Automation Journey.</p>
+                <a href="#contact" class="cta-button hero-main-cta animate-on-scroll" data-animation="fadeInUp" data-delay="200"><span>Schedule Free Consultation</span> <i class="fas fa-calendar-alt"></i></a>
+            </div>
+        </section>
+        <section id="contact" class="content-section">
+           <div class="container">
+                <h2 class="section-title animate-on-scroll" data-animation="fadeInUp">Interact <span>With Us</span></h2>
+                <p class="section-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="100">The future is a collaborative construct. Connect with Neuraboticx.ai to explore partnerships, custom solutions, or to join our mission.</p>
+                <form id="contact-form" class="animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" id="name" name="name" placeholder= ><label for="name">Designation</label></div>
+                        <div class="form-group"><input type="email" id="email" name="email" placeholder= ><label for="email">Comms Channel</label></div>
+                    </div>
+                    <div class="form-group"><input type="text" id="subject" name="subject" placeholder= ><label for="subject">Transmission Subject</label></div>
+                    <div class="form-group"><textarea id="message" name="message" rows="6" placeholder= ></textarea><label for="message">Encrypted Message</label></div>
+                    <button type="submit" class="cta-button form-submit-button"><span>Transmit Securely</span> <i class="fas fa-paper-plane"></i></button>
+                </form>
+                 <div class="contact-info animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+                    <p><i class="fas fa-map-marker-alt"></i> Quantum Realm Sector 7G, Digital Ether</p>
+                    <p><i class="fas fa-envelope"></i> connect@neuraboticx.ai</p>
+                    <p><i class="fas fa-phone-alt"></i> +1 (555) SYMB-IOSIS</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <audio id="background-audio" loop>
+        <source src="dark-cinematic-ambient.mp3" type="audio/mpeg">
+    </audio>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-area">
+                    <a href="index.html" class="logo-link">
+                        <div class="logo-container-footer">
+                            <div class="neural-icon">
+                                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="20" cy="30" r="6" fill="url(#nodeGradientFooter)"/>
+                                    <circle cx="20" cy="70" r="6" fill="url(#nodeGradientFooter)"/>
+                                    <circle cx="50" cy="20" r="6" fill="url(#nodeGradientFooter)"/>
+                                    <circle cx="50" cy="50" r="8" fill="url(#centerGradientFooter)"/>
+                                    <circle cx="50" cy="80" r="6" fill="url(#nodeGradientFooter)"/>
+                                    <circle cx="80" cy="35" r="6" fill="url(#nodeGradientFooter)"/>
+                                    <circle cx="80" cy="65" r="6" fill="url(#nodeGradientFooter)"/>
+                                    <line x1="26" y1="30" x2="44" y2="20" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="26" y1="30" x2="42" y2="50" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="26" y1="70" x2="42" y2="50" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="26" y1="70" x2="44" y2="80" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="56" y1="20" x2="74" y2="35" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="58" y1="50" x2="74" y2="35" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="58" y1="50" x2="74" y2="65" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <line x1="56" y1="80" x2="74" y2="65" stroke="url(#connectionGradientFooter)" stroke-width="2" opacity="0.8"/>
+                                    <defs>
+                                        <linearGradient id="nodeGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#40e0d0;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#00bcd4;stop-opacity:1" />
+                                        </linearGradient>
+                                        <radialGradient id="centerGradientFooter" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#40e0d0;stop-opacity:1" />
+                                        </radialGradient>
+                                        <linearGradient id="connectionGradientFooter" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#40e0d0;stop-opacity:0.6" />
+                                            <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.8" />
+                                            <stop offset="100%" style="stop-color:#00bcd4;stop-opacity:0.6" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <div class="company-name">NEURΔ<span class=""></span>BOTICX™</div>
+                        </div>
+                    </a>
+                    <p class="tagline">Engineering Tomorrow's Consciousness & Efficiency.</p>
+                </div>
+                 <div class="footer-links-group">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="index.html#vision">Our Philosophy</a></li>
+                        <li><a href="index.html#services-overview">Solutions Suite</a></li>
+                        <li><a href="index.html#tech-grid">Technology Stack</a></li>
+                        <li><a href="index.html#roadmap">Development Phases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="ethics.html">Ethical Codex</a></li>
+                        <li><a href="privacy.html">Privacy Mandate</a></li>
+                        <li><a href="privacy.html#terms">Terms of Symbiosis</a></li>
+                        <li><a href="careers.html">Careers (Join the Hive)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow the Signal</h4>
+                    <a href="#" aria-label="X/Twitter"><i class="fab fa-xing"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <div class="copyright-text">
+                <p>© <span id="current-year">2024</span> Neuraboticx</p>
+                <p>A Converged Intelligence Initiative by Subodh Katole | All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div id="floating-ai-assistant" class="animate-on-scroll" data-animation="zoomIn" data-delay="1500">
+        <i class="fas fa-brain"></i>
+    </div>
+    <div class="floating-buttons-container">
+        <a href="#pricing-plans" class="floating-btn primary"><span>Access Matrix Plans</span> <i class="fas fa-rocket"></i></a>
+        <a href="https://github.com/subodhkatole" target="_blank" class="floating-btn secondary"><span>Dev Portfolio</span> <i class="fab fa-github"></i></a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const liquidAnimationContainer = document.getElementById('hero-3d-liquid-container');
+        if (liquidAnimationContainer) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            liquidAnimationContainer.appendChild(renderer.domElement);
+            function setupDynamicSizingLiquid() {
+                const width = liquidAnimationContainer.clientWidth;
+                const height = liquidAnimationContainer.clientHeight;
+                if (width > 0 && height > 0) {
+                    renderer.setSize(width, height);
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                }
+            }
+            const colors = [
+                new THREE.Color(0x4287f5), new THREE.Color(0x42f5ef),
+                new THREE.Color(0x9042f5), new THREE.Color(0xf542b3)
+            ];
+            const geometry = new THREE.SphereGeometry(0.95, 64, 64);
+            const material = new THREE.MeshPhongMaterial({
+                color: colors[0], specular: 0x111111, shininess: 100,
+                transparent: true, opacity: 0.85, wireframe: false
+            });
+            const blob = new THREE.Mesh(geometry, material);
+            scene.add(blob);
+            const light1 = new THREE.DirectionalLight(0xffffff, 0.9);
+            light1.position.set(1.5, 1.5, 1.5); scene.add(light1);
+            const light2 = new THREE.DirectionalLight(0xffffff, 0.6);
+            light2.position.set(-1.5, -1.5, -1.5); scene.add(light2);
+            const ambientLight = new THREE.AmbientLight(0x505050); scene.add(ambientLight);
+            let time = 0;
+            const targetPositions = [];
+            const vertices = blob.geometry.attributes.position.array;
+            const originalVertices = [...vertices];
+            for (let i = 0; i < vertices.length; i++) {
+                targetPositions[i] = originalVertices[i] + (Math.random() - 0.5) * 0.55;
+            }
+            camera.position.z = 2.8;
+            window.addEventListener('resize', setupDynamicSizingLiquid);
+            let animationFrameIdLiquid;
+            function animateLiquid() {
+                animationFrameIdLiquid = requestAnimationFrame(animateLiquid);
+                time += 0.006;
+                for (let i = 0; i < vertices.length; i++) {
+                    const waveEffect = Math.sin(time + i * 0.12) * 0.12;
+                    vertices[i] = originalVertices[i] + (targetPositions[i] - originalVertices[i]) * (Math.sin(time * 1.1) * 0.5 + 0.5) + waveEffect;
+                }
+                blob.geometry.attributes.position.needsUpdate = true;
+                blob.geometry.computeVertexNormals();
+                blob.rotation.x = time * 0.12; blob.rotation.y = time * 0.17;
+                const colorIndex = Math.floor(time * 0.1) % colors.length;
+                const nextColorIndex = (colorIndex + 1) % colors.length;
+                const lerpFactor = (time * 0.1) % 1;
+                material.color.lerpColors(colors[colorIndex], colors[nextColorIndex], lerpFactor);
+                if (liquidAnimationContainer.clientWidth > 0 && liquidAnimationContainer.clientHeight > 0) {
+                     renderer.render(scene, camera);
+                }
+            }
+            const liquidObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setupDynamicSizingLiquid();
+                        if (!animationFrameIdLiquid) animateLiquid();
+                    } else {
+                        if (animationFrameIdLiquid) { cancelAnimationFrame(animationFrameIdLiquid); animationFrameIdLiquid = null; }
+                    }
+                });
+            }, { threshold: 0.01 });
+            liquidObserver.observe(liquidAnimationContainer);
+            if (liquidAnimationContainer.clientWidth > 0 && liquidAnimationContainer.clientHeight > 0 && getComputedStyle(liquidAnimationContainer).display !== 'none') {
+                setupDynamicSizingLiquid();
+                if (!animationFrameIdLiquid) animateLiquid();
+            }
+        } else {
+            console.error("Liquid sphere animation container (#hero-3d-liquid-container) not found.");
+        }
+    </script>
+    <script>
+        const allCubes = document.querySelectorAll('.hero-right-animation .cubes-container .cube');
+        const cubesContainerForMouse = document.querySelector('.hero-right-animation .cubes-container');
+        if (cubesContainerForMouse) {
+            cubesContainerForMouse.addEventListener('mousemove', function(e) {
+                if(allCubes.length === 0 || (allCubes[0] && allCubes[0].style.animationPlayState === 'paused')) {
+                    return;
+                }
+                const rect = cubesContainerForMouse.getBoundingClientRect();
+                const mouseX = (e.clientX - rect.left) / rect.width;
+                const mouseY = (e.clientY - rect.top) / rect.height;
+                allCubes.forEach((cube, index) => {
+                    const baseRotateX = parseFloat(cube.dataset.baseRotateX || 0);
+                    const baseRotateY = parseFloat(cube.dataset.baseRotateY || 0);
+                    const interactiveRotateX = (mouseY - 0.5) * 20;
+                    const interactiveRotateY = (mouseX - 0.5) * 30;
+                     const currentTransform = getComputedStyle(cube).transform;
+                     let translatePart = "translateY(0px)";
+                     if (currentTransform && currentTransform !== "none") {
+                         const match = currentTransform.match(/translateY\([^)]+\)/);
+                         if (match) translatePart = match[0];
+                     }
+                    cube.style.transform = `${translatePart} rotateX(${interactiveRotateX}deg) rotateY(${interactiveRotateY}deg)`;
+                });
+            });
+            cubesContainerForMouse.addEventListener('mouseleave', function() {
+                 allCubes.forEach((cube) => {
+                    cube.style.transform = '';
+                 });
+            });
+        }
+    </script>
+</body>
+</html>
